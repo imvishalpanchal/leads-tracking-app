@@ -17,6 +17,7 @@ COPY backend/package*.json ./backend/
 WORKDIR /app/backend
 RUN npm install
 COPY backend/prisma/ ./prisma/
+RUN touch prisma/dev.db
 RUN npx prisma generate
 COPY backend/src/ ./src/
 COPY backend/start.sh ./

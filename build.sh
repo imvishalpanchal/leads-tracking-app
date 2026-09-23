@@ -19,6 +19,7 @@ echo "Installing Backend dependencies..."
 cd backend
 npm install
 echo "Generating Prisma Client..."
+touch prisma/dev.db
 npx prisma generate
 echo "Applying database schema..."
 npx prisma db push
