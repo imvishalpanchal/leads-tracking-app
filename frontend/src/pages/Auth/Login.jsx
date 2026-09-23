@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Loader2, Eye, EyeOff, LayoutDashboard } from 'lucide-react';
-import { showToast } from '../../utils/toast';
+import { showToast } from '../../utils/helper/toast';
 import { authService } from '../../services';
 import { Input } from '../../components/FormElements';
 import { authSchema } from '../../schema/auth';

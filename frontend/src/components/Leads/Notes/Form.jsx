@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Input } from '../FormElements';
+import { Input } from '../../FormElements';
 import { Plus, Loader2 } from 'lucide-react';
 import { useLeadsNotes } from './Context';
 

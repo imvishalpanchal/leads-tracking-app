@@ -1,8 +1,8 @@
 import { useState, forwardRef, useImperativeHandle, memo } from 'react';
 import { MessageSquare } from 'lucide-react';
-import { showToast } from '../../utils/toast';
-import messages from '../../utils/messages';
-import { leadService } from '../../services';
+import { showToast } from '../../../utils/helper/toast';
+import messages from '../../../utils/messages';
+import { leadService } from '../../../services';
 import LeadsNotesForm from './Form';
 import LeadsNotesList from './List';
 import LeadsNotesContext from './Context';

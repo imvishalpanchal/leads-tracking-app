@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { Header } from './components/Layout';
 import { TOASTER_OPTIONS } from './utils/constants';
-import AppRoutes from './components/Routes';
+import AppRoutes from './components/AppRoutes';
 
 const App = () => {
   const location = useLocation();

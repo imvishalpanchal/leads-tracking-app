@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import LeadDetail from './Details';
-import LeadForm from './Form';
+import LeadDetail from '../../pages/Leads/Details';
+import LeadForm from '../../pages/Leads/Form';
 
 const LeadRoutes = () => {
     return (

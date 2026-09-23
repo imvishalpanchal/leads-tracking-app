@@ -1,4 +1,4 @@
-import api from './api';
+import api from '../config/api';
 
 const leadService = {
   getLeads: (search = '', status = '', page = 1, limit = 10) => {

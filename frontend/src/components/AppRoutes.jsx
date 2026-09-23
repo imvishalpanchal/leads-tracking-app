@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Login from '../pages/Auth/Login';
 import { LeadsList } from '../pages/Leads';
-import LeadRoutes from '../pages/Leads/Routes';
+import LeadRoutes from './Leads/Routes';
 import PrivateRoute from './Auth/PrivateRoute';
 import PublicRoute from './Auth/PublicRoute';
 

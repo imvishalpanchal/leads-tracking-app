@@ -1,5 +1,5 @@
 import { forwardRef, memo } from "react";
-import { getEventHandlers } from "../../utils/form";
+import { getEventHandlers } from "../../utils/helper/form";
 
 const Input = memo(forwardRef((props, ref) => {
   const {

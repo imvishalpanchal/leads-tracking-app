@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useLeadsNotes } from './Context';
-import { formatDateTime } from '../../utils/date';
+import { formatDateTime } from '../../../utils/helper/date';
 
 const LeadsNotesList = memo(() => {
     const { notes } = useLeadsNotes();

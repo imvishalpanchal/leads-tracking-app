@@ -1,11 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, User, Phone, Mail, Trash2, Edit } from 'lucide-react';
-import { showToast } from '../../utils/toast';
+import { showToast } from '../../utils/helper/toast';
 import { leadService } from '../../services';
 import { Loader } from '../../components/UI';
 import messages from '../../utils/messages';
-import LeadsNotes from '../../components/LeadsNotes';
+import LeadsNotes from '../../components/Leads/Notes';
+import DeleteModal from '../../components/Leads/DeleteModal';
 import useTitle from '../../hooks/useTitle';
 
 const LeadDetail = () => {
@@ -14,6 +15,9 @@ const LeadDetail = () => {
   const [lead, setLead] = useState(null);
   const [loading, setLoading] = useState(true);
   useTitle(lead ? `Lead: ${lead.name}` : 'Lead Details');
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const fetchLead = useCallback(async () => {
     try {
@@ -31,21 +35,22 @@ const LeadDetail = () => {
     fetchLead();
   }, [fetchLead]);
 
-  const handleDelete = useCallback(async () => {
-    if (window.confirm(messages.DELETE_CONFIRM)) {
-      try {
-        await leadService.deleteLead(id);
-        showToast(messages.DELETE_SUCCESS, 'success');
-        navigate('/');
-      } catch (error) {
-        showToast(messages.DELETE_FAIL, 'error');
-      }
+  const handleDeleteClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    setIsDeleting(true);
+    try {
+      await leadService.deleteLead(id);
+      showToast(messages.DELETE_SUCCESS, 'success');
+      navigate('/');
+    } catch (error) {
+      showToast(messages.DELETE_FAIL, 'error');
+      setIsDeleting(false);
+      setIsModalOpen(false);
     }
-  }, [id, navigate]);
-
-  const handleStatusChange = useCallback(async (e) => {
-
-  }, []);
+  };
 
   if (loading) return <Loader text="Loading details..." />;
   if (!lead) return <div className="text-center mt-4 card">Lead not found</div>;
@@ -66,7 +71,7 @@ const LeadDetail = () => {
               <button onClick={() => navigate(`/leads/${id}/edit`)} className="btn btn-secondary btn-sm-pad" title="Edit Lead">
                 <Edit size={16} />
               </button>
-              <button onClick={handleDelete} className="btn btn-danger btn-sm-pad">
+              <button onClick={handleDeleteClick} className="btn btn-danger btn-sm-pad">
                 <Trash2 size={16} />
               </button>
             </div>
@@ -96,6 +101,14 @@ const LeadDetail = () => {
 
         <LeadsNotes leadId={id} notes={lead.notes} onNoteAdded={fetchLead} />
       </div>
+
+      <DeleteModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={confirmDelete}
+        leadName={lead.name}
+        isDeleting={isDeleting}
+      />
     </div>
   );
 };
