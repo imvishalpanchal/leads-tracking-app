@@ -39,30 +39,33 @@ JWT_SECRET="ubJi4n7j5O5wjW7imT9Anz47jB82nrln4DSKA2TSufT"
 - npm
 - Docker (optional, for containerization)
 
-### 1-Click Setup (Recommended)
-
-Run the automated build script from the root directory. It will install all dependencies, configure the database, run the seed script (to add the default admin user and initial lead), and build the frontend:
-
-```bash
-chmod +x build.sh
-./build.sh
-```
-
-After it finishes, start the backend server (which will serve both the API and the built frontend):
-```bash
-cd backend
-npm run dev
-```
-Access the app at: [http://localhost:5001](http://localhost:5001)
-
 **Default Login Credentials (created by the seed script):**
 - **Email:** `admin@leadtech.com`
 - **Password:** `admin@12345678`
 
-### Docker Setup
+You can set up and run this project in 3 different ways depending on your use case:
 
-To run the application inside a Docker container:
+### Option 1: Development Mode (Hot Reloading) - `npm run dev`
+If you are a developer and want to edit code with instant hot-reloading, run this from the root folder. It will automatically install all dependencies, configure the DB, and start both frontend and backend concurrently:
+```bash
+npm run dev
+```
 
+### Option 2: 1-Click Setup (Production Build) - `./build.sh`
+This script builds the React frontend and serves it directly through the Node.js backend. Great for testing production behavior locally:
+```bash
+chmod +x build.sh
+./build.sh
+```
+After it finishes, start the server:
+```bash
+cd backend
+node src/server.js
+```
+Access the app at: [http://localhost:5001](http://localhost:5001)
+
+### Option 3: Docker Setup
+To run the application inside an isolated Docker container without needing Node.js installed on your machine:
 ```bash
 # Build the Docker image
 docker build -t leads-tracking-app .
@@ -93,7 +96,7 @@ curl "http://localhost:5001/api/leads?search=john&status=new" \
 curl -X POST http://localhost:5001/api/leads \
 -H "Authorization: Bearer YOUR_TOKEN_HERE" \
 -H "Content-Type: application/json" \
--d '{"name": "John Doe", "email": "john@example.com", "phone": "1234567890", "status": "new", "company": "Acme Corp"}'
+-d '{"name": "John Doe", "email": "john@example.com", "phone": "1234567890", "status": "new"}'
 ```
 
 **4. Update lead status:**
@@ -113,7 +116,7 @@ curl -X POST http://localhost:5001/api/leads/1/notes \
 ```
 
 ## Running Tests
-To run the Jest unit tests for the backend API:
+To run the Jest unit and integration tests for the backend API (includes complete test coverage for Auth and Leads modules):
 ```bash
 cd backend
 npm test
