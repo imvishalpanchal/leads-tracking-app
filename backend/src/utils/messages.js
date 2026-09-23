@@ -1,5 +1,6 @@
 const messages = {
   INTERNAL_SERVER_ERROR: 'Internal Server Error',
+  INVALID_EMAIL_OR_PASSWORD: 'Invalid email or password',
   LEAD_NOT_FOUND: 'Lead not found',
   EMAIL_EXISTS: 'Email already exists',
   ROUTE_NOT_FOUND: 'Route not found',

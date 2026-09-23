@@ -1,6 +1,6 @@
 const express = require('express');
 const authMiddleware = require('../middlewares/auth');
-const leadController = require('../controllers/leadController');
+const leadController = require('../controllers/leads');
 const { validateRequest } = require('../utils/yup');
 const { createLeadSchema, updateLeadSchema, createNoteSchema } = require('../validations/leads');
 

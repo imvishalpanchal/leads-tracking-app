@@ -1,4 +1,4 @@
-const leadService = require('../services/leadService');
+const leadService = require('../services/leads');
 const messages = require('../utils/messages');
 const ApiResponse = require('../config/api/sendResponse');
 const { errors } = require('../config/api/errorHandler');
